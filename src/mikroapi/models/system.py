@@ -1,7 +1,18 @@
+from pydantic import Field
 from .base import MikrotikBaseModel
 
 class SystemIdentity(MikrotikBaseModel):
     name: str
+
+class SystemPackage(MikrotikBaseModel):
+    id: str = Field(alias='.id')
+    available: bool
+    build_time: str
+    disabled: bool
+    name: str
+    scheduled: str
+    size: int
+    version: str
 
 class SystemResource(MikrotikBaseModel):
     architecture_name: str
