@@ -1,2 +1,2 @@
-from .interface import InterfaceService, EthernetInterfaceService
-from .system import SystemResourceService, SystemService
+from .interface import InterfaceService
+from .system import SystemService
