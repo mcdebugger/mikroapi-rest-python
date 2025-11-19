@@ -83,6 +83,14 @@ class AsyncMikrotikRESTAPIClient:
         else:
             raise ValueError(f'Unexpected response data type: {type(data)}')
     
+    async def command(self, endpoint: str, data: dict[str, Any]) -> Any:
+        response = await self.client.post(
+            f'{self.base_url}/{endpoint}',
+            json=data,
+            headers={'Content-Type': 'application/json'}
+        )
+        return self._handle_response(response)
+    
     def _handle_response(self, response: httpx.Response) -> Any:
         if response.status_code >= 400:
             error_data = response.json()
