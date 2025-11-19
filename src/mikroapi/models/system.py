@@ -14,6 +14,10 @@ class SystemPackage(MikrotikBaseModel):
     size: int
     version: str
 
+class SystemPackageUpdate(MikrotikBaseModel):
+    channel: str
+    installed_version: str
+
 class SystemResource(MikrotikBaseModel):
     architecture_name: str
     board_name: str
