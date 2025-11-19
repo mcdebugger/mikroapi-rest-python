@@ -1,13 +1,13 @@
+from ..client import AsyncMikrotikRESTAPIClient
 from ..models.interface import Interface, EthernetInterface
 from .base import BaseService, CollectionService
 
 class BaseInterfaceService(BaseService):
     pass
 
-class InterfaceService(BaseInterfaceService):
-    async def all(self) -> list[Interface]:
-        data = await self.api.get_list('interface')
-        return [Interface(**interface) for interface in data]
+class InterfaceService(CollectionService[Interface], BaseInterfaceService):
+    def __init__(self, api: AsyncMikrotikRESTAPIClient):
+        super().__init__(api, 'interface', Interface)
     
     @property
     def ethernet(self):
