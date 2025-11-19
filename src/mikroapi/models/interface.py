@@ -8,3 +8,9 @@ class Interface(MikrotikBaseModel):
     type: str
     disabled: bool
     running: bool
+
+class EthernetInterface(MikrotikBaseModel):
+    id: str = Field(alias=".id")
+    name: str
+    disabled: bool
+    running: bool

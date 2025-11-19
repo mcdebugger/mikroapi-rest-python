@@ -1,1 +1,1 @@
-from .interface import InterfaceService
+from .interface import InterfaceService, EthernetInterfaceService
