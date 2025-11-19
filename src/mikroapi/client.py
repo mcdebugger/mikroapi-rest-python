@@ -49,6 +49,40 @@ class AsyncMikrotikRESTAPIClient:
         )
         return self._handle_response(response)
     
+    async def get_item(self, endpoint: str) -> dict[str, Any]:
+        """
+        Retrieves an item from the given endpoint.
+        
+        Used for endpoints that return a single item like:
+        - /system/resource
+        - /system/routerboard
+        - /system/identity
+        - /system/license
+
+        Args:
+            endpoint (str): The endpoint to query.
+
+        Returns:
+            dict[str, Any]: The item retrieved from the endpoint.
+
+        Raises:
+            MikrotikAPIError: If the item is not found or if the response data type is unexpected.
+        """
+        response = await self.client.get(f'{self.base_url}/{endpoint}')
+        data = self._handle_response(response)
+        
+        if isinstance(data, list):
+            if len(data) == 0:
+                raise MikrotikAPIError(404, 'Item not found')
+            if len(data) == 1:
+                return data[0]
+            else:
+                return data[0]
+        elif isinstance(data, dict):
+            return data
+        else:
+            raise ValueError(f'Unexpected response data type: {type(data)}')
+    
     def _handle_response(self, response: httpx.Response) -> Any:
         if response.status_code >= 400:
             error_data = response.json()
