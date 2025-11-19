@@ -6,6 +6,7 @@ from .base import MikrotikBaseModel
 class BaseInterface(MikrotikBaseModel):
     id: str = Field(alias='.id')
     name: str
+    default_name: str | None = None
     comment: str | None = None
     disabled: bool
     mtu: int | Literal['auto']
