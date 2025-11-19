@@ -2,15 +2,16 @@ from pydantic import Field
 
 from .base import MikrotikBaseModel
 
-class Interface(MikrotikBaseModel):
+class BaseInterface(MikrotikBaseModel):
     id: str = Field(alias=".id")
     name: str
-    type: str
+    comment: str | None = None
     disabled: bool
     running: bool
 
-class EthernetInterface(MikrotikBaseModel):
-    id: str = Field(alias=".id")
-    name: str
-    disabled: bool
-    running: bool
+class Interface(BaseInterface):
+    actual_mtu: int
+    type: str
+
+class EthernetInterface(BaseInterface):
+    pass
