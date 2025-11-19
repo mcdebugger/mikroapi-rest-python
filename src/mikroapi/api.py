@@ -12,3 +12,13 @@ class AsyncMikrotikRESTAPI():
     
     async def __aexit__(self, exc_type, exc_value, traceback):
         await self._client.__aexit__(exc_type, exc_value, traceback)
+    
+    @property
+    def client(self) -> AsyncMikrotikRESTAPIClient:
+        """
+        Property to access the underlying AsyncMikrotikRESTAPIClient.
+
+        Returns:
+            AsyncMikrotikRESTAPIClient: The underlying client.
+        """
+        return self._client
