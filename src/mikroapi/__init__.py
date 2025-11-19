@@ -1,3 +1,3 @@
-from .client import MikrotikRESTAPI
+from .client import AsyncMikrotikRESTAPI
 
-__all__ = ["MikrotikRESTAPI"]
+__all__ = ["AsyncMikrotikRESTAPI"]

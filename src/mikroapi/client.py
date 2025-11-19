@@ -1,6 +1,6 @@
 import httpx
 
-class MikrotikRESTAPI:
+class AsyncMikrotikRESTAPI:
     def __init__(
         self,
         host: str,
