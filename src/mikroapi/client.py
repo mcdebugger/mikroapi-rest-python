@@ -1,6 +1,6 @@
 import httpx
 
-class MikrotikRESTClient:
+class MikrotikRESTAPI:
     def __init__(
         self,
         host: str,
