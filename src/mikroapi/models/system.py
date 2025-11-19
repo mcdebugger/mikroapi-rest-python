@@ -1,5 +1,8 @@
 from .base import MikrotikBaseModel
 
+class SystemIdentity(MikrotikBaseModel):
+    name: str
+
 class SystemResource(MikrotikBaseModel):
     architecture_name: str
     board_name: str
@@ -18,3 +21,13 @@ class SystemResource(MikrotikBaseModel):
     version: str
     write_sect_since_reboot: int
     write_sect_total: int
+
+class SystemRouterBoard(MikrotikBaseModel):
+    board_name: str
+    current_firmware: str
+    factory_firmware: str
+    firmware_type: str
+    model: str
+    routerboard: bool
+    serial_number: str
+    upgrade_firmware: str
