@@ -2,7 +2,7 @@ from typing import TypeVar, Generic
 from ..client import AsyncMikrotikRESTAPIClient
 from ..models.base import MikrotikBaseModel
 
-M = TypeVar('M', bound='MikrotikBaseModel')
+M = TypeVar('M', bound=MikrotikBaseModel)
 
 class BaseService:
     def __init__(self, api: AsyncMikrotikRESTAPIClient):
