@@ -46,3 +46,13 @@ class SystemRouterBoard(MikrotikBaseModel):
     routerboard: bool
     serial_number: str
     upgrade_firmware: str
+
+class SystemScript(MikrotikBaseModel):
+    id: str = Field(alias='.id')
+    name: str
+    owner: str
+    policy: str
+    dont_require_permissions: bool
+    invalid: bool
+    run_count: int
+    last_started: str
