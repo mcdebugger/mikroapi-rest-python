@@ -5,6 +5,7 @@ class IPFirewallRule(MikrotikBaseModel):
     id: str = Field(alias='.id')
     action: str | None = None
     chain: str
+    disabled: bool | None = None
     dynamic: bool
     invalid: bool | None = None
     bytes: int
