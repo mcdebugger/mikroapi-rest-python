@@ -1,7 +1,7 @@
 from .base import MikrotikBaseModel
 from pydantic import Field
 
-class IPFirewallFilterRule(MikrotikBaseModel):
+class IPFirewallRule(MikrotikBaseModel):
     id: str = Field(alias='.id')
     action: str | None = None
     chain: str
