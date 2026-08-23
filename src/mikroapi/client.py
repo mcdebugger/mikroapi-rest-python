@@ -1,8 +1,11 @@
+from logging import getLogger
 from typing import Any
 
 import httpx
 
 from .exceptions import MikrotikAPIError
+
+logger = getLogger(__name__)
 
 class AsyncMikrotikRESTAPIClient:
     def __init__(
@@ -10,11 +13,16 @@ class AsyncMikrotikRESTAPIClient:
         host: str,
         username: str,
         password: str,
+        port: int | None = None,
         use_https: bool = True,
         verify_ssl: bool = False,
         timeout: int = 30,
     ):
-        self.base_url = f"{'https' if use_https else 'http'}://{host}/rest"
+        self.base_url = f"{'https' if use_https else 'http'}://" \
+                        f"{host}" \
+                        f"{'' if port is None else f':{port}'}" \
+                        "/rest"
+        logger.debug(f'Base URL: {self.base_url}')
         self.auth = httpx.BasicAuth(username, password)
         self.verify_ssl = verify_ssl
         self.timeout = timeout
