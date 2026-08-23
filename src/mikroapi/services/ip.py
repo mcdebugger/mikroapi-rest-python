@@ -1,8 +1,12 @@
 from ..client import AsyncMikrotikRESTAPIClient
-from ..models.ip import IPFirewallRule
+from ..models.ip import IPFirewallAddressListEntry, IPFirewallRule
 from .base import BaseService, CollectionService
 
 class IPFirewallService(BaseService):
+    @property
+    def address_list(self):
+        return CollectionService(self.api, 'ip/firewall/address-list', IPFirewallAddressListEntry)
+    
     @property
     def filter(self):
         return CollectionService(self.api, 'ip/firewall/filter', IPFirewallRule)
