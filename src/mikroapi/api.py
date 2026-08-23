@@ -1,10 +1,11 @@
 from .client import AsyncMikrotikRESTAPIClient
-from .services import InterfaceService, SystemService
+from .services import InterfaceService, IPService, SystemService
 
 class AsyncMikrotikRESTAPI():
     def __init__(self, **kwargs):
         self._client = AsyncMikrotikRESTAPIClient(**kwargs)
         self.interface = InterfaceService(self._client)
+        self.ip = IPService(self._client)
         self.system = SystemService(self._client)
     
     async def __aenter__(self):
