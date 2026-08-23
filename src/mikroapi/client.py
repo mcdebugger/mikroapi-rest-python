@@ -1,8 +1,11 @@
+from logging import getLogger
 from typing import Any
 
 import httpx
 
 from .exceptions import MikrotikAPIError
+
+logger = getLogger(__name__)
 
 class AsyncMikrotikRESTAPIClient:
     def __init__(
