@@ -38,6 +38,20 @@ class AsyncMikrotikRESTAPIClient:
     async def __aexit__(self, exc_type, exc_value, traceback):
         await self.client.aclose()
 
+    async def add(
+        self,
+        endpoint: str,
+        data: dict[str, Any],
+    ) -> dict[str, Any]:
+        response = await self.client.put(
+            f'{self.base_url}/{endpoint}',
+            json=data,
+            headers={'Content-Type': 'application/json'}
+        )
+        return self._handle_response(
+            response
+    )
+
     async def get_list(
         self,
         endpoint: str,
