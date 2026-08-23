@@ -5,6 +5,7 @@ class IPFirewallAddressListEntry(MikrotikBaseModel):
     id: str = Field(alias='.id')
     address: str
     list: str
+    comment: str | None = None
     disabled: bool
     dynamic: bool
     creation_time: str
