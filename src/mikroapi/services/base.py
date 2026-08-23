@@ -14,6 +14,10 @@ class CollectionService(BaseService, Generic[M]):
         self.endpoint = endpoint
         self.model = model
     
+    async def add(self, **kwargs) -> M:
+        data = await self.api.add(self.endpoint, kwargs)
+        return self.model(**data)
+    
     async def all(self) -> list[M]:
         data = await self.api.get_list(self.endpoint)
         return [self.model(**item) for item in data]
