@@ -1,10 +1,20 @@
 from .base import MikrotikBaseModel
 from pydantic import Field
 
+class IPFirewallAddressListEntry(MikrotikBaseModel):
+    id: str = Field(alias='.id')
+    address: str
+    list: str
+    comment: str | None = None
+    disabled: bool
+    dynamic: bool
+    creation_time: str
+
 class IPFirewallRule(MikrotikBaseModel):
     id: str = Field(alias='.id')
     action: str | None = None
     chain: str
+    disabled: bool | None = None
     dynamic: bool
     invalid: bool | None = None
     bytes: int
